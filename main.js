@@ -73,4 +73,35 @@ inquirer
           );
         });
     }
+    if (main.menu === "Attack") {
+      inquirer
+        .prompt([
+          {
+            type: "input",
+            name: "attacker",
+            message: "Who is attacker? "
+          },
+          {
+            type: "input",
+            name: "defender",
+            message: "Who is defender?"
+          }
+        ])
+        .then(attacking => {
+          attack(attacking.attacker, attacking.defender);
+        });
+    }
+    if (main.menu === "Level Up") {
+      inquirer
+        .prompt([
+          {
+            type: "input",
+            name: "levelTarget",
+            message: "Who is leveling up? "
+          }
+        ])
+        .then(userInput => {
+          userInput.levelTarget.levelUp();
+        });
+    }
   });
