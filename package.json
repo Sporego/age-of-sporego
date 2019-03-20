@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Sporego/age-of-sporego/issues"
   },
-  "homepage": "https://github.com/Sporego/age-of-sporego#readme"
+  "homepage": "https://github.com/Sporego/age-of-sporego#readme",
+  "dependencies": {
+    "inquirer": "^6.2.2"
+  }
 }

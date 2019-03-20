@@ -1,3 +1,5 @@
+var inquirer = require("inquirer");
+
 function CharacterGen(name, profession, gender, age, strength, hp) {
   this.name = name;
   this.profession = profession;
@@ -25,4 +27,3 @@ function levelUp(character) {
 }
 
 console.log("Welcome to Age of sporEGO");
-console.log("T");
