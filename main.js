@@ -28,80 +28,86 @@ function levelUp(character) {
 
 console.log("Welcome to Age of sporEGO");
 
-inquirer
-  .prompt([
-    {
-      type: "list",
-      name: "menu",
-      choices: ["Create Character", "Attack", "Level Up"]
-    }
-  ])
-  .then(main => {
-    if (main.menu === "Create Character") {
-      inquirer
-        .prompt([
-          {
-            type: "input",
-            name: "name",
-            message: "Name of Character: "
-          },
+function main() {
+  inquirer
+    .prompt([
+      {
+        type: "list",
+        name: "menu",
+        choices: ["Create Character", "Attack", "Level Up"]
+      }
+    ])
+    .then(main => {
+      if (main.menu === "Create Character") {
+        inquirer
+          .prompt([
+            {
+              type: "input",
+              name: "name",
+              message: "Name of Character: "
+            },
 
-          {
-            type: "input",
-            name: "profession",
-            message: "What is thou class?: "
-          },
-          {
-            type: "list",
-            name: "gender",
-            choices: ["Male", "Female"]
-          },
-          {
-            type: "input",
-            name: "age",
-            message: "Age: "
-          }
-        ])
-        .then(generator => {
-          new CharacterGen(
-            generator.name,
-            generator.profession,
-            generator.gender,
-            generator.age,
-            parseInt(5),
-            parseInt(25)
-          );
-        });
-    }
-    if (main.menu === "Attack") {
-      inquirer
-        .prompt([
-          {
-            type: "input",
-            name: "attacker",
-            message: "Who is attacker? "
-          },
-          {
-            type: "input",
-            name: "defender",
-            message: "Who is defender?"
-          }
-        ])
-        .then(attacking => {
-          attack(attacking.attacker, attacking.defender);
-        });
-    }
-    if (main.menu === "Level Up") {
-      inquirer
-        .prompt([
-          {
-            type: "input",
-            name: "levelTarget",
-            message: "Who is leveling up? "
-          }
-        ])
-        .then(userInput => {
-          userInput.levelTarget.levelUp();
-        });
-    }
-  });
+            {
+              type: "input",
+              name: "profession",
+              message: "What is thou class?: "
+            },
+            {
+              type: "list",
+              name: "gender",
+              choices: ["Male", "Female"]
+            },
+            {
+              type: "input",
+              name: "age",
+              message: "Age: "
+            }
+          ])
+          .then(generator => {
+            new CharacterGen(
+              generator.name,
+              generator.profession,
+              generator.gender,
+              generator.age,
+              parseInt(5),
+              parseInt(25)
+            );
+            main();
+          });
+      }
+      if (main.menu === "Attack") {
+        inquirer
+          .prompt([
+            {
+              type: "input",
+              name: "attacker",
+              message: "Who is attacker? "
+            },
+            {
+              type: "input",
+              name: "defender",
+              message: "Who is defender?"
+            }
+          ])
+          .then(attacking => {
+            attack(attacking.attacker, attacking.defender);
+            main();
+          });
+      }
+      if (main.menu === "Level Up") {
+        inquirer
+          .prompt([
+            {
+              type: "input",
+              name: "levelTarget",
+              message: "Who is leveling up? "
+            }
+          ])
+          .then(userInput => {
+            userInput.levelTarget.levelUp();
+            main();
+          });
+      }
+    });
+}
+main();
